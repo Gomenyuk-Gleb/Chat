@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 
     <title>Google Authentication sample</title>
 
@@ -65,12 +66,26 @@
 
 
 <script>
-
-    function reply_click() {
+       function reply_click() {
         $.getJSON('/indexfirst', function (data) {
-            var text = $("#add").val();
+            var s = $("#add").val();
             let name = data.name;
-            console.log(name)
+            let key = name.substr(1, 4)
+
+            let code = (function () {
+                return {
+                    encryptMessage: function (messageToencrypt = '', secretkey = '') {
+                        var encryptedMessage = CryptoJS.AES.encrypt(messageToencrypt, secretkey);
+                        return encryptedMessage.toString();
+                    },
+                    decryptMessage: function (encryptedMessage = '', secretkey = '') {
+                        var decryptedBytes = CryptoJS.AES.decrypt(encryptedMessage, secretkey);
+                        var decryptedMessage = decryptedBytes.toString(CryptoJS.enc.Utf8);
+                        return decryptedMessage;
+                    }
+                }
+            })();
+            let text = code.encryptMessage(s, key);
             $.ajax({
                 type: "POST",
                 url: "/message",
@@ -84,6 +99,10 @@
                 }
             })
         });
+    }
+
+    function enc(data) {
+        data = "ssasas"
     }
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

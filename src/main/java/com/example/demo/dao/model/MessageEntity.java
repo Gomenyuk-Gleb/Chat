@@ -11,7 +11,7 @@ public class MessageEntity {
     @GeneratedValue
     private Long id;
 
-    private byte[] text;
+    private String text;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id")
@@ -21,19 +21,19 @@ public class MessageEntity {
     @JoinColumn(name = "chat_id")
     private ChatEntity chat;
 
-    public MessageEntity(byte[] text) {
+    public MessageEntity(String text) {
         this.text = text;
     }
 
     public MessageEntity() {
     }
 
-    public MessageEntity(byte[] text, UserEntity userEntities) {
+    public MessageEntity(String text, UserEntity userEntities) {
         this.text = text;
         this.userEntities = userEntities;
     }
 
-    public static MessageEntity of(byte[] text, UserEntity userEntities) {
+    public static MessageEntity of(String text, UserEntity userEntities) {
         return new MessageEntity(text, userEntities);
     }
 
@@ -49,11 +49,11 @@ public class MessageEntity {
         this.id = id;
     }
 
-    public byte[] getText() {
+    public String getText() {
         return text;
     }
 
-    public void setText(byte[] text) {
+    public void setText(String text) {
         this.text = text;
     }
 
@@ -78,7 +78,7 @@ public class MessageEntity {
         return "Massage{" +
                 "id=" + id +
                 ", text='" + text + '\'' +
-                ", massgeList=" + userEntities +
+                ", massgeList=" + userEntities.getName() +
                 '}';
     }
 }

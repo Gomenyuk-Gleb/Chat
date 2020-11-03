@@ -4,58 +4,22 @@ import com.example.demo.dao.model.UserEntity;
 
 public class MessageDTO {
 
-    private Long id;
-
-    private byte[] text;
-
     private UserEntity userEntities;
 
-    private StringBuilder stringBuilder;
-
-    public MessageDTO(byte[] text) {
-        this.text = text;
-    }
+    private String text;
 
     public MessageDTO() {
     }
 
-    public MessageDTO(byte[] text, UserEntity userEntities) {
+    public MessageDTO(String text, UserEntity userEntities) {
         this.text = text;
         this.userEntities = userEntities;
     }
 
-    public MessageDTO(StringBuilder stringBuilder, UserEntity userEntities) {
-        this.stringBuilder = stringBuilder;
-        this.userEntities = userEntities;
-    }
-
-    public static MessageDTO of(byte[] text, UserEntity userEntities) {
+    public static MessageDTO of(String text, UserEntity userEntities) {
         return new MessageDTO(text, userEntities);
     }
 
-    public StringBuilder getStringBuilder() {
-        return stringBuilder;
-    }
-
-    public void setStringBuilder(StringBuilder stringBuilder) {
-        this.stringBuilder = stringBuilder;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public byte[] getText() {
-        return text;
-    }
-
-    public void setText(byte[] text) {
-        this.text = text;
-    }
 
     public String getUserEntities() {
         return userEntities.getName();
@@ -65,14 +29,20 @@ public class MessageDTO {
         this.userEntities = userEntities;
     }
 
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return text;
+    }
 
     @Override
     public String toString() {
-        return "Massage{" +
-                "id=" + id +
-                ", text='" + text + '\'' +
-                ", massgeList=" + userEntities.getName() +
-                '}';
+        return
+                "text='" + text + '\'' +
+                        ", massgeList=" + userEntities.getName() +
+                        '}';
     }
 
 }
