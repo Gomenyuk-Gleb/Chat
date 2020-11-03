@@ -27,6 +27,15 @@ public class UserEntity {
     public UserEntity() {
     }
 
+    public UserEntity(String name) {
+        this.name = name;
+    }
+
+    public UserEntity(String name, ChatEntity chat) {
+        this.name = name;
+        this.chat = chat;
+    }
+
     public List<MessageEntity> getMessageEntities() {
         return messageEntities;
     }
@@ -42,9 +51,6 @@ public class UserEntity {
         return secretKey;
     }
 
-    public UserEntity(String name) {
-        this.name = name;
-    }
 
     public Long getId() {
         return id;

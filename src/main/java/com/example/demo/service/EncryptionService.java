@@ -17,5 +17,4 @@ public interface EncryptionService {
     public List<MessageDTO> allMessage();
 
     public MessageDTO decrypt(final SecretKey keys, final byte[] bytes, String userName) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException;
-
 }

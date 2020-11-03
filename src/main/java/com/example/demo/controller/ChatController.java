@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.model.UserEntity;
-import com.example.demo.dao.repository.ChatRepository;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +16,6 @@ public class ChatController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private ChatRepository chatRepository;
 
     private UserEntity userFirst;
 
