@@ -21,7 +21,6 @@ public class UserServiceImp implements UserService {
     @Transient
     @Override
     public void save(final UserEntity userEntity) {
-        System.out.println(userEntity.getChat());
         userRepository.save(userEntity);
     }
 
