@@ -14,10 +14,10 @@ function loadData() {
         for (i = 0; i < data.length; i++) {
             let t = data[i].text
             let u = data[i].userEntities
-            let key = getFirstUser()
+            let key = u.substr(1, 4)
 
             console.log(code.decryptMessage(t, key))
-            if (u == 'first') {
+            if (u == 'second') {
                 $('#data > tbody:last-child').append(
                     $('<tr>')
                         .append($('<td>').append(data[i].userEntities))

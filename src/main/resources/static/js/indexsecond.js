@@ -5,7 +5,6 @@ $(document).ready(function () {
     });
     setInterval(loadData(), 1000);
 });
-
 function loadData() {
     $("#data > tbody").empty();
     $.getJSON('/message', function (data) {
@@ -14,14 +13,14 @@ function loadData() {
         for (i = 0; i < data.length; i++) {
             let t = data[i].text
             let u = data[i].userEntities
-            let key = getFirst()
-            console.log(key)
-            let keySecond = getSecondUser()
+            let key = u(1, 4)
+
+            console.log(code.decryptMessage(t, key))
             if (u == 'second') {
                 $('#data > tbody:last-child').append(
                     $('<tr>')
                         .append($('<td>').append(data[i].userEntities))
-                        .append($('<td>').append(code.decryptMessage(t, keySecond)))
+                        .append($('<td>').append(code.decryptMessage(t, key)))
                 );
             } else {
                 $('#data > tbody:last-child').append(
@@ -33,7 +32,6 @@ function loadData() {
         }
     });
 }
-
 let code = (function () {
     return {
         decryptMessage: function (encryptedMessage = '', secretkey = '') {
