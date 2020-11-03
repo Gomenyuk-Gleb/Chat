@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $.getJSON('/indexfirst', function (data) {
         $('#name').text(data.name);
+        console.log(data.name)
     });
     setInterval(loadData(), 1000);});
 

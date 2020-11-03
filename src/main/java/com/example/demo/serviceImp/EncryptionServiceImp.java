@@ -36,6 +36,7 @@ public class EncryptionServiceImp implements EncryptionService {
     @Transient
     @Override
     public void saveMessage(final String text, final String userName) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+
         final UserEntity userEntity = userRepository.findByName(userName);
         byte[] bytes = new byte[0];
         Cipher cipher = Cipher.getInstance("AES");
@@ -84,6 +85,7 @@ public class EncryptionServiceImp implements EncryptionService {
         }
         return new MessageDTO(stringBuilder, userRepository.findByName(userName));
     }
+
 
     public void add(final SecretKey secretKey, final byte[] bytes, String userName, final List<MessageDTO> messageDTO) {
         try {

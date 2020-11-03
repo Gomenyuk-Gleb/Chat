@@ -11,16 +11,16 @@ public class ChatEntity {
     @GeneratedValue
     private Long id;
 
-    private String chatName;
+    private String name;
 
-    @OneToMany(mappedBy = "chat")
+    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
     private List<UserEntity> userEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL)
     private List<MessageEntity> messageEntities = new ArrayList<>();
 
-    public ChatEntity(String chatName) {
-        this.chatName = chatName;
+    public ChatEntity(String name) {
+        this.name = name;
     }
 
     public ChatEntity() {
@@ -54,18 +54,16 @@ public class ChatEntity {
         this.messageEntities = messageEntities;
     }
 
-    public String getChatName() {
-        return chatName;
+    public String getName() {
+        return name;
     }
 
-    public void setChatName(String name) {
-        this.chatName = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return "ChatEntity{" +
-                "chatName='" + chatName + '\'' +
-                '}';
+        return "name='" + name + '\'';
     }
 }

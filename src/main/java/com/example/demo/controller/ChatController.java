@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dao.model.UserEntity;
+import com.example.demo.dao.repository.ChatRepository;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,9 @@ public class ChatController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ChatRepository chatRepository;
+
     private UserEntity userFirst;
 
     private UserEntity userSecond;
@@ -27,6 +31,7 @@ public class ChatController {
             userFirst = new UserEntity("first");
             userService.save(userFirst);
             httpServletResponse.sendRedirect("indexfirst.html");
+
         } else if (userService.length() == 1) {
             userSecond = new UserEntity("second");
             userService.save(userSecond);
@@ -44,7 +49,6 @@ public class ChatController {
 
     @GetMapping("/indexsecond")
     public UserEntity indexsecond() {
-
         return userSecond;
     }
 

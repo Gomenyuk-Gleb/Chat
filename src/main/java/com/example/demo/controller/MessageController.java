@@ -20,7 +20,7 @@ public class MessageController {
     private EncryptionService encryptionService;
 
     @PostMapping("message")
-    public String userSend(@RequestParam final String text, @RequestParam final String name) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
+    public String userSend(@RequestParam String text, @RequestParam String name) throws IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchAlgorithmException, NoSuchPaddingException {
         encryptionService.saveMessage(text, name);
 
         return "success";

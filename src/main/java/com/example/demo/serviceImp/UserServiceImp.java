@@ -1,6 +1,5 @@
 package com.example.demo.serviceImp;
 
-import com.example.demo.dao.model.ChatEntity;
 import com.example.demo.dao.model.UserEntity;
 import com.example.demo.dao.repository.ChatRepository;
 import com.example.demo.dao.repository.UserRepository;
@@ -21,9 +20,8 @@ public class UserServiceImp implements UserService {
 
     @Transient
     @Override
-    public void save(final UserEntity userEntity) {
-        ChatEntity chatEntity = chatRepository.findAll().get(0);
-        userEntity.setChat(chatEntity);
+    public void save(UserEntity userEntity) {
+        System.out.println(userEntity.getChat());
         userRepository.save(userEntity);
     }
 

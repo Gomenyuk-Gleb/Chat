@@ -20,8 +20,8 @@ public class UserEntity {
     @OneToMany(mappedBy = "userEntities", cascade = CascadeType.ALL)
     private List<MessageEntity> messageEntities = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "chat_id")
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "chats_id")
     private ChatEntity chat;
 
     public UserEntity() {
@@ -62,12 +62,20 @@ public class UserEntity {
         this.name = name;
     }
 
+    public ChatEntity getChat() {
+        return chat;
+    }
+
     public void setChat(ChatEntity chat) {
         this.chat = chat;
     }
 
     @Override
     public String toString() {
-        return "name='" + name + '\'';
+        return "UserEntity{" +
+                "name='" + name + '\'' +
+                ", messageEntities=" + messageEntities +
+                ", chat=" + chat +
+                '}';
     }
 }

@@ -33,6 +33,13 @@ public class MessageDTO {
         return new MessageDTO(text, userEntities);
     }
 
+    public StringBuilder getStringBuilder() {
+        return stringBuilder;
+    }
+
+    public void setStringBuilder(StringBuilder stringBuilder) {
+        this.stringBuilder = stringBuilder;
+    }
 
     public Long getId() {
         return id;
